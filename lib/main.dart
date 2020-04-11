@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import './questao.dart';
+import './resposta.dart';
 
 //ṕorta de entrada é o main
 main() => runApp(PerguntaApp());
@@ -43,23 +44,15 @@ class _PerguntaAppState extends State<PerguntaApp>{
           children:[
             // Text(perguntas[_perguntaIndex]),
             Questao(perguntas[_perguntaIndex]),
-            RaisedButton(
-              child: Text('Resposta1'),
-              //aqui ta passando o metodo e não chamando
-              onPressed: _responder
-            ),
-            RaisedButton(
-              child: Text('Resposta2'),
-              onPressed: _responder
-              // onPressed: (){
-              //   print('resposta2');
-              // }
-            ),
-            RaisedButton(
-              child: Text('Resposta3'),
-              // onPressed: () =>print('resposta3')
-              onPressed: _responder
-            )
+            // RaisedButton(
+            //   child: Text('Resposta1'),
+            //   //aqui ta passando o metodo e não chamando
+            //   onPressed: _responder
+            // ),
+            Resposta('Resposta1'),
+            Resposta('Resposta2'),
+            Resposta('Resposta3'),
+            
           ],
         ),
         
