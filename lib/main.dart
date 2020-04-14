@@ -49,9 +49,9 @@ class _PerguntaAppState extends State<PerguntaApp>{
             //   //aqui ta passando o metodo e não chamando
             //   onPressed: _responder
             // ),
-            Resposta('Resposta1'),
-            Resposta('Resposta2'),
-            Resposta('Resposta3'),
+            Resposta('Resposta1', _responder),
+            Resposta('Resposta2', _responder),
+            Resposta('Resposta3', _responder),
             
           ],
         ),
