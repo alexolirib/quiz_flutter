@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import './questao.dart';
-import './resposta.dart';
+import './resultado.dart';
+import './questionario.dart';
 
 //ṕorta de entrada é o main
 main() => runApp(PerguntaApp());
@@ -74,40 +74,51 @@ class _PerguntaAppState extends State<PerguntaApp>{
         //     Text('linha3'),
         //   ],
        //com ctrl + "." 
-        body: temPerguntaSelecionada ? Column(
-          children:[
-            // Text(perguntas[_perguntaIndex]),
-            Questao(_perguntas[_perguntaIndex]['Texto']),
-            // RaisedButton(
-            //   child: Text('Resposta1'),
-            //   //aqui ta passando o metodo e não chamando
-            //   onPressed: _responder
-            // ),
+        body: temPerguntaSelecionada ?
+        //  Column(
+        //   children:[
+        //     // Text(perguntas[_perguntaIndex]),
+        //     Questao(_perguntas[_perguntaIndex]['Texto']),
+        //     // RaisedButton(
+        //     //   child: Text('Resposta1'),
+        //     //   //aqui ta passando o metodo e não chamando
+        //     //   onPressed: _responder
+        //     // ),
 
-            // primeira forma de mandar varios valores
-            // Resposta('Resposta1', _responder),
-            // Resposta('Resposta2', _responder),
-            // Resposta('Resposta3', _responder),
-            // segunda forma 
-            // ...listResp,
-            //terceira forma. Utilizando Map
-            ...resp.map((t)=>Resposta(t, _responder)).toList()
-          ],
-        ) : Container(
-            width: double.infinity,
-            child: Center(
-              child: Text(
-                'Parabéns',
-                //css
-                style: TextStyle(
-                  fontSize: 28,
-                ),
-              ),
-              
-              
-              
-            )
-          ),
+        //     // primeira forma de mandar varios valores
+        //     // Resposta('Resposta1', _responder),
+        //     // Resposta('Resposta2', _responder),
+        //     // Resposta('Resposta3', _responder),
+        //     // segunda forma 
+        //     // ...listResp,
+        //     //terceira forma. Utilizando Map
+        //     ...resp.map((t)=>Resposta(t, _responder)).toList()
+        //   ],
+        // ) 
+        Questionario(
+          perguntas: _perguntas,
+          perguntaIndex: _perguntaIndex,
+          responder: _responder,
+          temPerguntaSelecionada: temPerguntaSelecionada,
+        )
+        : 
+
+        // Container(
+        //   width: double.infinity,
+        //   child: Center(
+        //     child: Text(
+        //       'Parabéns',
+        //       //css
+        //       style: TextStyle(
+        //         fontSize: 28,
+        //       ),
+        //     ),
+            
+            
+            
+        //   )
+        // ),
+        Resultado('Parabéns')
         
       ),
     );
