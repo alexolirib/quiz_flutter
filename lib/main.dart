@@ -93,7 +93,21 @@ class _PerguntaAppState extends State<PerguntaApp>{
             //terceira forma. Utilizando Map
             ...resp.map((t)=>Resposta(t, _responder)).toList()
           ],
-        ) : null,
+        ) : Container(
+            width: double.infinity,
+            child: Center(
+              child: Text(
+                'Parabéns',
+                //css
+                style: TextStyle(
+                  fontSize: 28,
+                ),
+              ),
+              
+              
+              
+            )
+          ),
         
       ),
     );
