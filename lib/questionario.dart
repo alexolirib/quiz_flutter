@@ -7,14 +7,14 @@ class Questionario extends StatelessWidget {
 
   final List perguntas;
   final int perguntaIndex; 
-  final Function responder;
+  final Function(int) responder;
   final bool temPerguntaSelecionada;
 
   Questionario({
-    this.perguntas,
-    this.perguntaIndex,
-    this.responder,
-    this.temPerguntaSelecionada
+    @required this.perguntas,
+    @required this.perguntaIndex,
+    @required this.responder,
+    @required this.temPerguntaSelecionada
   });
 
   @override
@@ -28,7 +28,14 @@ class Questionario extends StatelessWidget {
       child: Column(
         children: [
           Questao(perguntas[perguntaIndex]['Texto']),
-          ...resp.map((t)=>Resposta(t, responder)).toList()
+          ...resp.map((res){
+            return Resposta(
+              res['texto'], () {
+                 responder(res['pontuacao']);
+              }
+            );
+            
+            }).toList()
         ],
       )
       

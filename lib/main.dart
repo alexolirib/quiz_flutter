@@ -8,34 +8,58 @@ main() => runApp(PerguntaApp());
 
 class _PerguntaAppState extends State<PerguntaApp>{
   var _perguntaIndex=0;
+  var _pontuacaoTotal = 0;
   final _perguntas = const [
       {
         'Texto':"Qual é a sua cor favorita?",
-        'Resposta': ['Preto', 'Vermelho', 'Verde', 'Branco']
+        'Resposta': [
+            {'texto':'Preto', 'pontuacao': 10},
+            {'texto':'Vermelho', 'pontuacao': 7},
+            {'texto':'Verde', 'pontuacao': 5},
+            {'texto':'Branco', 'pontuacao': 3},
+          ]
       },
       {
         'Texto':"Qual é o seu animal favorito?",
-        'Resposta': ['Maria', 'João', 'Elefante', 'Leão']
+        'Resposta': [
+          {'texto':'Maria', 'pontuacao': 10},
+          {'texto':'João', 'pontuacao': 7},
+          {'texto':'Elefante', 'pontuacao': 5},
+          {'texto':'Leão', 'pontuacao': 3},
+        ]
       },
       {
         'Texto':"Qual é o seu instrutor favorito?",
-        'Resposta': ['Alexandre', 'Leo', 'Jonas', 'Matheus']
+        'Resposta': [
+          {'texto':'Alexandre', 'pontuacao': 10},
+          {'texto':'Leo', 'pontuacao': 7},
+          {'texto':'Jonas', 'pontuacao': 5},
+          {'texto':'Matheus', 'pontuacao': 3},
+        ]
       },
 
     ];
 
-  void _responder(){
+  void _responder(int pontuacao){
     if (temPerguntaSelecionada){
       setState(() {
         _perguntaIndex++;
+        _pontuacaoTotal += pontuacao;
       });
+
     }
-    print('Pergunta respondida');
   }
 
   //fazer getter
   bool get temPerguntaSelecionada {
     return _perguntaIndex < _perguntas.length;
+  }
+
+  void _resetGame(){
+    setState(() {
+      _perguntaIndex = 0;
+      _pontuacaoTotal = 0;
+    });
   }
 
   //preciso implementar um metodo para build
@@ -50,7 +74,7 @@ class _PerguntaAppState extends State<PerguntaApp>{
     // }
 
 
-    List<String> resp = temPerguntaSelecionada 
+    List resp = temPerguntaSelecionada 
       ? _perguntas[_perguntaIndex]['Resposta'] : null;
     // List<Widget> mapResp = resp
     //   .map((t)   => Resposta(t, _responder))
@@ -118,7 +142,7 @@ class _PerguntaAppState extends State<PerguntaApp>{
             
         //   )
         // ),
-        Resultado('Parabéns')
+        Resultado(_pontuacaoTotal, _resetGame)
         
       ),
     );
